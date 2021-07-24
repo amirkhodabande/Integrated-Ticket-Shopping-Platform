@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  nginx_seller:
+    image: nginx:latest
+    container_name: nginx_seller
+    ports:
+      - "89:80"
+    volumes:
+      - ./project:/var/www/html/website:rw # With read / write access
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro # With read-only access
+    networks:
+      - lemp-network
+    links:
+      - php_seller
+
+  mariadb_seller:
+    image: mariadb:latest
+    container_name: mariadb_seller
+    volumes:
+      - ./lemp-volume-mariadb:/var/lib/mysql
+    networks:
+      - lemp-network
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ticket_seller
+
+  php_seller:
+    build: ./
+    container_name: php_seller
+    volumes:
+      - ./project:/var/www/html/website
+      - ./custom.php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - lemp-network
+    links:
+      - mariadb_seller
+
+networks:
+  lemp-network:
+    driver: bridge
