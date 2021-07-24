@@ -1,0 +1,5 @@
+/lemp-volume-mariadb/*
+/lemp-volume-mariadb
+
+/.idea
+/.vscode
