@@ -22,11 +22,20 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ticket  $ticket
+     * @param \App\Models\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(Ticket $ticket): \Illuminate\Http\Response
     {
-        //
+        return response($ticket);
+    }
+
+    /**
+     * @param \App\Models\Ticket $ticket
+     * @return \Illuminate\Http\Response
+     */
+    public function purchaseTicket(Ticket $ticket): \Illuminate\Http\Response
+    {
+        return response(['message' => 'Ticket purchased successfully.', 'data' => $ticket]);
     }
 }
