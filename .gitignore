@@ -3,3 +3,7 @@
 
 /.idea
 /.vscode
+
+/microservices/Tickets/lemp-volume-mariadb
+/microservices/UserManaging/lemp-volume-mariadb
+/microservices/MockupThirdParty/lemp-volume-mariadb
